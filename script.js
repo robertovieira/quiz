@@ -41,7 +41,6 @@ function showQuestion(){
 
         document.querySelectorAll('.options .option').forEach(item => {
             item.addEventListener('click', optionClickEvent);
-            item.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
         });
 
         document.querySelector('.questionArea').style.display = 'block';

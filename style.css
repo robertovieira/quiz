@@ -123,6 +123,7 @@ h1 {
     color: #000;
     font-size: 16px;
     cursor: pointer;
+    padding: 25px 0px;
 }
 .option span {
     display: flex;
