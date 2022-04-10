@@ -64,17 +64,17 @@ function optionClickEvent(e) {
             correctAnswers++;        
 
             showWarning('Resposta correta!', 'success');
-            correctAnswerElement.style.border = "3px solid green";
-            correctAnswerElement.style.backgroundColor = '#fff';
-            
+            correctAnswerElement.style.backgroundColor = 'green';
+            correctAnswerElement.style.color = "#fff";
+
             document.querySelector('.progressCorrect').classList.add('infoProgressAnimation');
         } else {
             showWarning('Resposta errada!', 'error');
-            correctAnswerElement.style.border = "3px solid green";
-            incorrectAnswerElement.style.border = "3px solid red";
-
-            correctAnswerElement.style.backgroundColor = '#fff';
-            incorrectAnswerElement.style.backgroundColor = '#fff';
+            
+            correctAnswerElement.style.backgroundColor = 'green';
+            correctAnswerElement.style.color = "#fff";
+            incorrectAnswerElement.style.backgroundColor = 'red';
+            incorrectAnswerElement.style.color = "#fff";
 
             document.querySelector('.progressIncorrect').classList.add('infoProgressAnimation');
         }
