@@ -10,7 +10,7 @@ document.querySelector('.scoreArea button').addEventListener('click', resetEvent
 
 // Functions
 function showQuestion(){
-    showWarning('');
+    showWarning('', '');
 
     document.querySelector('.progressCorrect').innerHTML = `<i class="uil uil-check-circle"></i> ${correctAnswers}`;
     document.querySelector('.progressIncorrect').innerHTML = `<i class="uil uil-times-circle"></i> ${currentQuestion - correctAnswers}`;
@@ -108,10 +108,14 @@ function finishQuiz() {
 function resetEvent() {
     correctAnswers = 0;
     currentQuestion = 0;
+    canClick = true;
     showQuestion();
+
+    let infoProgress = document.querySelector('.infoProgress');
+    infoProgress.style.display = 'grid';
 }
 
-function showWarning(message, type = 'success') {
+function showWarning(message, type) {
     let warningElement = document.querySelector('.warning');
     warningElement.innerHTML = message;
 
