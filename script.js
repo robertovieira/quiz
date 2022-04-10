@@ -1,6 +1,7 @@
 // Initial Data
 let currentQuestion = 0;
 let correctAnswers = 0;
+let canClick = true;
 
 showQuestion();
 
@@ -9,6 +10,14 @@ document.querySelector('.scoreArea button').addEventListener('click', resetEvent
 
 // Functions
 function showQuestion(){
+    showWarning('');
+
+    document.querySelector('.progressCorrect').innerHTML = `<i class="uil uil-check-circle"></i> ${correctAnswers}`;
+    document.querySelector('.progressIncorrect').innerHTML = `<i class="uil uil-times-circle"></i> ${currentQuestion - correctAnswers}`;
+    document.querySelector('.progressRemainder').innerHTML = `<i class="uil uil-list-ul"></i> ${questions.length - currentQuestion}`;
+
+    // infoProgress.innerHTML = `Acertou: ${correctAnswers} | Errou: ${currentQuestion - correctAnswers} | Faltam: ${(questions.length - currentQuestion}`;
+
     if (questions[currentQuestion]) {
         let q = questions[currentQuestion];
 
@@ -39,20 +48,41 @@ function showQuestion(){
 }
 
 function optionClickEvent(e) {
-    let clickedOption = parseInt(e.target.getAttribute('data-op'));
 
-    if (clickedOption === questions[currentQuestion].answer) {
-        correctAnswers++;
+    if (canClick) {
+        canClick = false;
+
+        let incorrectAnswerElement = e.target;
+        let clickedOption = parseInt(incorrectAnswerElement.getAttribute('data-op'));
+
+        let correctAnswerElement = document.querySelector(`div[data-op="${questions[currentQuestion].answer}"]`);
+
+        if (clickedOption === questions[currentQuestion].answer) {
+            correctAnswers++;        
+
+            showWarning('Resposta correta! Aguarde...', 'success');
+            correctAnswerElement.style.border = "3px solid green";
+        } else {
+            showWarning('Resposta errada! Aguarde...', 'error');
+            correctAnswerElement.style.border = "3px solid green";
+            incorrectAnswerElement.style.border = "3px solid #B22222";
+        }
+
+        setTimeout(() => {
+            currentQuestion++;
+            showQuestion();
+            canClick = true;
+        }, 2000);
     }
-
-    currentQuestion++;
-    showQuestion();
 }
 
 function finishQuiz() {
     let points = Math.floor((correctAnswers / questions.length) * 100);
 
     // resetando as informacoes da tela
+    let infoProgress = document.querySelector('.infoProgress');
+    infoProgress.style.display = 'none';
+
     document.querySelector('.questionArea').style.display = 'none';
     document.querySelector('.progress--bar').style.width = '100%';
 
@@ -62,7 +92,7 @@ function finishQuiz() {
 
     if (points < 30) {
         document.querySelector('.scoreText1').innerHTML = 'Tá ruim, em?!';
-        document.querySelector('.scorePct').style.color = '#f00';
+        document.querySelector('.scorePct').style.color = '#B22222';
     } else if (points >= 30 && points < 70) {
         document.querySelector('.scoreText1').innerHTML = 'Muito Bom!';
         document.querySelector('.scorePct').style.color = '#ff0';
@@ -79,4 +109,15 @@ function resetEvent() {
     correctAnswers = 0;
     currentQuestion = 0;
     showQuestion();
+}
+
+function showWarning(message, type = 'success') {
+    let warningElement = document.querySelector('.warning');
+    warningElement.innerHTML = message;
+
+    if (type === 'success') {
+        warningElement.style.color = 'green';
+    } else if (type === 'error'){
+        warningElement.style.color = '#B22222';
+    }
 }

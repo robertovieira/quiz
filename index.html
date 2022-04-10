@@ -6,10 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <body>
     <div class="progress">
         <div class="progress--bar"></div>
+    </div>
+
+    <div class="infoProgress">
+        <div class="progressCorrect">Acertou 0</div>
+        <div class="progressIncorrect">Errou 0</div>
+        <div class="progressRemainder">0</div>
     </div>
 
     <h1>Quiz do Roberto</h1>
@@ -21,8 +28,10 @@
         </div>
     </div>
 
+    <div class="warning"></div>    
+
     <div class="scoreArea">
-        <img src="prize.png" class="prizeImage" />
+        <!-- <img src="prize.png" class="prizeImage" /> -->
         <div class="scoreText1">Parabéns!</div>
         <div class="scorePct">Acertou 99%</div>
         <div class="scoreText2">Você respondeu 9 questões e acertou 8.</div>
@@ -32,6 +41,7 @@
     <footer><i>Made by <a href="https://www.robertovieira.com.br" target="_blank">Roberto Vieira</a></i></footer>
 
     <script src="questions.js"></script>
+    <script src="sweetalert.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@ body {
     flex-direction: column;
     background-color: #333;
     font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
 }
 
 h1 {
@@ -32,6 +33,42 @@ h1 {
     transition: all ease .5s;
 }
 
+.infoProgress {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 4px;
+    color: #ccc;
+    top: 30px;
+    position: fixed;
+    width: 250px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.progressCorrect {
+    background-color: green;
+    color: #fff;
+    padding: 5px;
+}
+
+.progressIncorrect {
+    background-color: red;
+    color: #000;
+    padding: 5px;
+}
+
+.progressRemainder {
+    background-color: #ccc;
+    color: #000;
+    padding: 5px;
+}
+
+.progressCorrect,
+.progressIncorrect,
+.progressRemainder {
+    border-radius: 5px;
+}
+
 .questionArea,
 .scoreArea {
     display: none;
@@ -46,6 +83,7 @@ h1 {
     color: #FFF;
     font-size: 18px;
     margin: 20px 0;
+    text-align: center;
 }
 .option {
     display: flex;
@@ -72,6 +110,13 @@ h1 {
 }
 .option:hover {
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.warning {
+    color: #FFF;
+    font-size: 18px;
+    margin: 20px 0;
+    text-align: center;
 }
 
 .scoreArea {
@@ -118,7 +163,7 @@ h1 {
 }
 
 footer {
-    margin-top: 50px;
+    margin-top: 100px;
     color: #999;
     font-size: 13px;
 }
