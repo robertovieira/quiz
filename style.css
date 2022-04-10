@@ -212,3 +212,10 @@ footer {
 footer a {
     color: #999;
 }
+
+@media (max-width: 425px) {
+    .option:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+}
