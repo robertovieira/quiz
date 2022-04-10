@@ -15,6 +15,10 @@ function showQuestion(){
     document.querySelector('.progressCorrect').classList.remove('infoProgressAnimation');
     document.querySelector('.progressIncorrect').classList.remove('infoProgressAnimation');
 
+    document.querySelectorAll('.options .option').forEach(item => {
+        item.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    });
+
     document.querySelector('.progressCorrect').innerHTML = `<i class="uil uil-check-circle"></i> ${correctAnswers}`;
     document.querySelector('.progressIncorrect').innerHTML = `<i class="uil uil-times-circle"></i> ${currentQuestion - correctAnswers}`;
     document.querySelector('.progressRemainder').innerHTML = `<i class="uil uil-list-ul"></i> ${questions.length - currentQuestion}`;
@@ -70,7 +74,7 @@ function optionClickEvent(e) {
             document.querySelector('.progressCorrect').classList.add('infoProgressAnimation');
         } else {
             showWarning('Resposta errada!', 'error');
-            
+
             correctAnswerElement.style.backgroundColor = 'green';
             correctAnswerElement.style.color = "#fff";
             incorrectAnswerElement.style.backgroundColor = 'red';
@@ -93,6 +97,8 @@ function finishQuiz() {
     // resetando as informacoes da tela
     let infoProgress = document.querySelector('.infoProgress');
     infoProgress.style.display = 'none';
+
+    document.querySelector('.titulo').innerHTML = '';
 
     document.querySelector('.questionArea').style.display = 'none';
     document.querySelector('.progress--bar').style.width = '100%';
@@ -120,6 +126,7 @@ function resetEvent() {
     correctAnswers = 0;
     currentQuestion = 0;
     canClick = true;
+    document.querySelector('.titulo').innerHTML = 'Meu Quiz';
     showQuestion();
 
     let infoProgress = document.querySelector('.infoProgress');
