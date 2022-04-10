@@ -12,6 +12,9 @@ document.querySelector('.scoreArea button').addEventListener('click', resetEvent
 function showQuestion(){
     showWarning('', '');
 
+    document.querySelector('.progressCorrect').classList.remove('infoProgressAnimation');
+    document.querySelector('.progressIncorrect').classList.remove('infoProgressAnimation');
+
     document.querySelector('.progressCorrect').innerHTML = `<i class="uil uil-check-circle"></i> ${correctAnswers}`;
     document.querySelector('.progressIncorrect').innerHTML = `<i class="uil uil-times-circle"></i> ${currentQuestion - correctAnswers}`;
     document.querySelector('.progressRemainder').innerHTML = `<i class="uil uil-list-ul"></i> ${questions.length - currentQuestion}`;
@@ -60,12 +63,20 @@ function optionClickEvent(e) {
         if (clickedOption === questions[currentQuestion].answer) {
             correctAnswers++;        
 
-            showWarning('Resposta correta! Aguarde...', 'success');
+            showWarning('Resposta correta!', 'success');
             correctAnswerElement.style.border = "3px solid green";
+            correctAnswerElement.style.backgroundColor = '#fff';
+            
+            document.querySelector('.progressCorrect').classList.add('infoProgressAnimation');
         } else {
-            showWarning('Resposta errada! Aguarde...', 'error');
+            showWarning('Resposta errada!', 'error');
             correctAnswerElement.style.border = "3px solid green";
-            incorrectAnswerElement.style.border = "3px solid #B22222";
+            incorrectAnswerElement.style.border = "3px solid red";
+
+            correctAnswerElement.style.backgroundColor = '#fff';
+            incorrectAnswerElement.style.backgroundColor = '#fff';
+
+            document.querySelector('.progressIncorrect').classList.add('infoProgressAnimation');
         }
 
         setTimeout(() => {
@@ -116,12 +127,15 @@ function resetEvent() {
 }
 
 function showWarning(message, type) {
+    document.querySelector('.c-loader').style.display = (type === '') ? 'none' : 'block';
+    document.querySelector('.c-loader').style.borderTopColor = (type === 'success') ? 'green' : 'red';
+
     let warningElement = document.querySelector('.warning');
     warningElement.innerHTML = message;
 
     if (type === 'success') {
         warningElement.style.color = 'green';
     } else if (type === 'error'){
-        warningElement.style.color = '#B22222';
+        warningElement.style.color = 'red';
     }
 }

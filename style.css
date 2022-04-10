@@ -1,3 +1,27 @@
+@keyframes is-rotating {
+    to {
+        transform: rotate(1turn);
+    }
+
+    /* 0% { border-top-color: green; }
+    25% { border-top-color: red; }
+    50% { border-top-color: red; }
+    75% { border-top-color: green; }
+    100% { border-top-color: green; } */
+}
+
+@keyframes zoom-in-zoom-out {
+    0% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(1.5, 1.5);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +34,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #333;
+    /* background-color: #333; */
     font-family: Arial, Helvetica, sans-serif;
     padding: 20px;
 }
@@ -28,7 +52,7 @@ h1 {
     right: 0;
 }
 .progress--bar {
-    background-color: #00FF00;
+    background-color: green;
     height: 100%;
     transition: all ease .5s;
 }
@@ -63,10 +87,14 @@ h1 {
     padding: 5px;
 }
 
+.infoProgressAnimation {
+    animation: zoom-in-zoom-out 1s ease infinite;
+}
+
 .progressCorrect,
 .progressIncorrect,
 .progressRemainder {
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .questionArea,
@@ -80,7 +108,7 @@ h1 {
 }
 
 .question {
-    color: #FFF;
+    color: #000;
     font-size: 18px;
     margin: 20px 0;
     text-align: center;
@@ -89,10 +117,10 @@ h1 {
     display: flex;
     align-items: center;
     height: 40px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     margin-bottom: 5px;
-    color: #AAA;
+    color: #000;
     font-size: 16px;
     cursor: pointer;
 }
@@ -106,21 +134,32 @@ h1 {
     margin-left: 5px;
     margin-right: 10px;
     background-color: rgba(0, 0, 0, 0.8);
-    color: #555;
+    color: #fff;
 }
 .option:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .warning {
-    color: #FFF;
+    color: #000;
     font-size: 18px;
     margin: 20px 0;
     text-align: center;
+    font-weight: bold;
 }
 
+.c-loader {
+    display: block;
+    border: 6px solid #e5e5e5;
+    border-top-color: #000;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    animation: is-rotating 1s infinite;
+  }
+
 .scoreArea {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 20px;
     margin: 10px;
@@ -135,13 +174,14 @@ h1 {
     color: #000;
     font-size: 23px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .scorePct {
-    color: #0d630d;
+    color: green;
+    /* color: #0d630d; */
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .scoreText2 {
     font-size: 16px;
@@ -153,7 +193,7 @@ h1 {
     border: 0;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.5);
-    color: #CCC;
+    color: #fff;
     padding: 10px;
     margin-top: 20px;
     cursor: pointer;
