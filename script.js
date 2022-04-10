@@ -13,11 +13,7 @@ function showQuestion(){
     showWarning('', '');
 
     document.querySelector('.progressCorrect').classList.remove('infoProgressAnimation');
-    document.querySelector('.progressIncorrect').classList.remove('infoProgressAnimation');
-
-    document.querySelectorAll('.options .option').forEach(item => {
-        item.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    });
+    document.querySelector('.progressIncorrect').classList.remove('infoProgressAnimation');    
 
     document.querySelector('.progressCorrect').innerHTML = `<i class="uil uil-check-circle"></i> ${correctAnswers}`;
     document.querySelector('.progressIncorrect').innerHTML = `<i class="uil uil-times-circle"></i> ${currentQuestion - correctAnswers}`;
@@ -45,6 +41,7 @@ function showQuestion(){
 
         document.querySelectorAll('.options .option').forEach(item => {
             item.addEventListener('click', optionClickEvent);
+            item.style.backgroundColor = 'background-color: rgba(0, 0, 0, 0.5);';
         });
 
         document.querySelector('.questionArea').style.display = 'block';
@@ -98,7 +95,7 @@ function finishQuiz() {
     let infoProgress = document.querySelector('.infoProgress');
     infoProgress.style.display = 'none';
 
-    document.querySelector('.titulo').innerHTML = '';
+    document.querySelector('#titulo').innerHTML = '';
 
     document.querySelector('.questionArea').style.display = 'none';
     document.querySelector('.progress--bar').style.width = '100%';
@@ -126,7 +123,7 @@ function resetEvent() {
     correctAnswers = 0;
     currentQuestion = 0;
     canClick = true;
-    document.querySelector('.titulo').innerHTML = 'Meu Quiz';
+    document.querySelector('#titulo').innerHTML = 'Meu Quiz';
     showQuestion();
 
     let infoProgress = document.querySelector('.infoProgress');
